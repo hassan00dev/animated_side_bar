@@ -154,8 +154,10 @@ class SideBarAnimatedState extends State<SideBarAnimated>
         children: [
           Padding(
             padding: EdgeInsets.only(
-                left: _width >= widget.widthSwitch && !_minimize ? 20 : 18,
-                top: 24),
+              left: _width >= widget.widthSwitch && !_minimize ? 20 : 18,
+              top: 24,
+              right: _width >= widget.widthSwitch && !_minimize ? 20 : 18,
+            ),
             child: Image.asset(
               widget.mainLogoImage,
               width: widget.mainLogoWidth,
