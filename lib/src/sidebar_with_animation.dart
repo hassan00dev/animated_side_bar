@@ -118,6 +118,13 @@ class SideBarAnimatedState extends State<SideBarAnimated>
     // );
   }
 
+  ///Animation creator function
+  void animateToNewIndex(int index) {
+    setState(() {
+      _itemIndex = index.toDouble();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     _height = MediaQuery.sizeOf(context).height;
