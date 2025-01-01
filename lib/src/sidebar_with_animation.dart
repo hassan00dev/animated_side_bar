@@ -19,9 +19,12 @@ class SideBarAnimated extends StatefulWidget {
   double widthSwitch;
   double borderRadius;
   double sideBarWidth;
+
   // double sideBarItemHeight;
   double sideBarSmallWidth;
   String mainLogoImage;
+  double? mainLogoWidth;
+  double? mainLogoHeight;
   List<SideBarItem> sidebarItems;
   bool settingsDivider;
   Curve curve;
@@ -48,6 +51,8 @@ class SideBarAnimated extends StatefulWidget {
     this.textStyle =
         const TextStyle(fontFamily: "SFPro", fontSize: 16, color: Colors.white),
     required this.mainLogoImage,
+    this.mainLogoWidth,
+    this.mainLogoHeight,
     required this.sidebarItems,
     required this.widthSwitch,
     required this.onTap,
@@ -66,6 +71,7 @@ class SideBarAnimatedState extends State<SideBarAnimated>
   bool _minimize = false;
   late AnimationController _animationController;
   late Animation<double> _floating;
+
   // late Timer _counterTimer;
 
   @override
@@ -152,8 +158,8 @@ class SideBarAnimatedState extends State<SideBarAnimated>
                 top: 24),
             child: Image.asset(
               widget.mainLogoImage,
-              width: 48,
-              height: 48,
+              width: widget.mainLogoWidth,
+              height: widget.mainLogoHeight ?? 48,
             ),
           ),
           Expanded(
