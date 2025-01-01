@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 ///ignore: must_be_immutable
 class SideBarAnimated extends StatefulWidget {
   final ValueChanged<int>? onTap;
+  EdgeInsets? margin;
   Color sideBarColor;
   Duration sideBarAnimationDuration;
   Duration floatingAnimationDuration;
@@ -32,6 +33,7 @@ class SideBarAnimated extends StatefulWidget {
 
   SideBarAnimated({
     super.key,
+    this.margin,
     this.sideBarColor = const Color(0xff1D1D1D),
     this.animatedContainerColor = const Color(0xff323232),
     this.unSelectedTextColor = const Color(0xffA0A5A9),
@@ -40,10 +42,10 @@ class SideBarAnimated extends StatefulWidget {
     this.hoverColor = Colors.black38,
     this.splashColor = Colors.black87,
     this.highlightColor = Colors.black,
-    this.borderRadius = 20,
+    this.borderRadius = 0,
     this.sideBarWidth = 260,
     this.sideBarSmallWidth = 84,
-    this.settingsDivider = true,
+    this.settingsDivider = false,
     this.curve = Curves.easeOut,
     this.sideBarAnimationDuration = const Duration(milliseconds: 700),
     this.floatingAnimationDuration = const Duration(milliseconds: 500),
@@ -140,7 +142,7 @@ class SideBarAnimatedState extends State<SideBarAnimated>
     return AnimatedContainer(
       curve: widget.curve,
       height: _height,
-      margin: const EdgeInsets.all(20),
+      margin: widget.margin,
       width: _width >= widget.widthSwitch && !_minimize
           ? widget.sideBarWidth
           : widget.sideBarSmallWidth,
