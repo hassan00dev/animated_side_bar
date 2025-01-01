@@ -54,10 +54,10 @@ class SideBarAnimated extends StatefulWidget {
   });
 
   @override
-  State<SideBarAnimated> createState() => _SideBarAnimatedState();
+  State<SideBarAnimated> createState() => SideBarAnimatedState();
 }
 
-class _SideBarAnimatedState extends State<SideBarAnimated>
+class SideBarAnimatedState extends State<SideBarAnimated>
     with SingleTickerProviderStateMixin {
   late double _width;
   late double _height;
