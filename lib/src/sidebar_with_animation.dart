@@ -25,6 +25,9 @@ class SideBarAnimated extends StatefulWidget {
   String mainLogoImage;
   double? mainLogoWidth;
   double? mainLogoHeight;
+  String? smallLogoImage;
+  double? smallLogoWidth;
+  double? smallLogoHeight;
   List<SideBarItem> sidebarItems;
   bool settingsDivider;
   Curve curve;
@@ -54,6 +57,9 @@ class SideBarAnimated extends StatefulWidget {
     required this.mainLogoImage,
     this.mainLogoWidth,
     this.mainLogoHeight,
+    this.smallLogoImage,
+    this.smallLogoWidth,
+    this.smallLogoHeight,
     required this.sidebarItems,
     required this.widthSwitch,
     required this.onTap,
@@ -141,9 +147,16 @@ class SideBarAnimatedState extends State<SideBarAnimated> {
               right: _width >= widget.widthSwitch && !_minimize ? 20 : 18,
             ),
             child: Image.asset(
-              widget.mainLogoImage,
-              width: widget.mainLogoWidth,
-              height: widget.mainLogoHeight ?? 48,
+              // Show main logo when expanded, small logo when collapsed
+              _width >= widget.widthSwitch && !_minimize
+                  ? widget.mainLogoImage
+                  : (widget.smallLogoImage ?? widget.mainLogoImage),
+              width: _width >= widget.widthSwitch && !_minimize
+                  ? widget.mainLogoWidth
+                  : widget.smallLogoWidth,
+              height: _width >= widget.widthSwitch && !_minimize
+                  ? (widget.mainLogoHeight ?? 48)
+                  : (widget.smallLogoHeight ?? 48),
             ),
           ),
           Expanded(

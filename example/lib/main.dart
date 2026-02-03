@@ -37,6 +37,12 @@ class MyHomePage extends StatelessWidget {
             // animatedContainerColor: Colors.white,
             widthSwitch: 700,
             mainLogoImage: 'assets/logo.png',
+            mainLogoHeight: 48,
+            mainLogoWidth: 150,
+            // Optional: Show a different logo when sidebar is collapsed
+            smallLogoImage: 'assets/logo-small.png',
+            smallLogoHeight: 40,
+            smallLogoWidth: 40,
             sidebarItems: [
               SideBarItem(
                 iconSelected: Icons.home_rounded,
