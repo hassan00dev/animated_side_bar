@@ -146,17 +146,35 @@ class SideBarAnimatedState extends State<SideBarAnimated> {
               top: 24,
               right: _width >= widget.widthSwitch && !_minimize ? 20 : 18,
             ),
-            child: Image.asset(
-              // Show main logo when expanded, small logo when collapsed
-              _width >= widget.widthSwitch && !_minimize
-                  ? widget.mainLogoImage
-                  : (widget.smallLogoImage ?? widget.mainLogoImage),
-              width: _width >= widget.widthSwitch && !_minimize
-                  ? widget.mainLogoWidth
-                  : widget.smallLogoWidth,
-              height: _width >= widget.widthSwitch && !_minimize
-                  ? (widget.mainLogoHeight ?? 48)
-                  : (widget.smallLogoHeight ?? 48),
+            child: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 400),
+              transitionBuilder: (Widget child, Animation<double> animation) {
+                return FadeTransition(
+                  opacity: animation,
+                  child: ScaleTransition(
+                    scale: Tween<double>(begin: 0.8, end: 1.0).animate(
+                      CurvedAnimation(
+                        parent: animation,
+                        curve: Curves.easeOutBack,
+                      ),
+                    ),
+                    child: child,
+                  ),
+                );
+              },
+              child: Image.asset(
+                // Show main logo when expanded, small logo when collapsed
+                _width >= widget.widthSwitch && !_minimize
+                    ? widget.mainLogoImage
+                    : (widget.smallLogoImage ?? widget.mainLogoImage),
+                key: ValueKey<bool>(_width >= widget.widthSwitch && !_minimize),
+                width: _width >= widget.widthSwitch && !_minimize
+                    ? widget.mainLogoWidth
+                    : widget.smallLogoWidth,
+                height: _width >= widget.widthSwitch && !_minimize
+                    ? (widget.mainLogoHeight ?? 48)
+                    : (widget.smallLogoHeight ?? 48),
+              ),
             ),
           ),
           Expanded(
@@ -223,7 +241,9 @@ class SideBarAnimatedState extends State<SideBarAnimated> {
                               color: widget.animatedContainerColor,
                               borderRadius: BorderRadius.circular(12)),
                           child: Row(
-                            mainAxisSize: MainAxisSize.min,
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Icon(
                                 widget.sidebarItems[_itemIndex.floor()].iconSelected,
@@ -231,7 +251,7 @@ class SideBarAnimatedState extends State<SideBarAnimated> {
                                 size: 24,
                               ),
                               if (_width >= widget.widthSwitch && !_minimize)
-                                Flexible(
+                                Expanded(
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 12.0),
                                     child: Text(
@@ -303,7 +323,9 @@ Widget sideBarItem({
         height: height,
         padding: const EdgeInsets.all(12),
         child: Row(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Icon(
               icon,
@@ -311,7 +333,7 @@ Widget sideBarItem({
               size: 24,
             ),
             if (width >= widthSwitch && !minimize)
-              Flexible(
+              Expanded(
                 child: Padding(
                   padding: const EdgeInsets.only(left: 12.0),
                   child: Text(
