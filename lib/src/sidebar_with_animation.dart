@@ -223,18 +223,22 @@ class SideBarAnimatedState extends State<SideBarAnimated> {
                               color: widget.animatedContainerColor,
                               borderRadius: BorderRadius.circular(12)),
                           child: Row(
+                            mainAxisSize: MainAxisSize.min,
                             children: [
                               Icon(
                                 widget.sidebarItems[_itemIndex.floor()].iconSelected,
                                 color: Colors.white,
+                                size: 24,
                               ),
                               if (_width >= widget.widthSwitch && !_minimize)
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 12.0),
-                                  child: Text(
-                                    widget.sidebarItems[_itemIndex.floor()].text,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: widget.textStyle,
+                                Flexible(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 12.0),
+                                    child: Text(
+                                      widget.sidebarItems[_itemIndex.floor()].text,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: widget.textStyle,
+                                    ),
                                   ),
                                 ),
                             ],
@@ -299,18 +303,22 @@ Widget sideBarItem({
         height: height,
         padding: const EdgeInsets.all(12),
         child: Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Icon(
               icon,
               color: unselectedIconColor,
+              size: 24,
             ),
             if (width >= widthSwitch && !minimize)
-              Padding(
-                padding: const EdgeInsets.only(left: 12.0),
-                child: Text(
-                  text,
-                  overflow: TextOverflow.ellipsis,
-                  style: textStyle.copyWith(color: unSelectedTextColor),
+              Flexible(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 12.0),
+                  child: Text(
+                    text,
+                    overflow: TextOverflow.ellipsis,
+                    style: textStyle.copyWith(color: unSelectedTextColor),
+                  ),
                 ),
               ),
           ],

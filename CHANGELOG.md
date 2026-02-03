@@ -1,3 +1,7 @@
+## 0.1.2
+
+Responsiveness
+
 ## 0.1.1
 
 Add dual logo support with optional small logo for collapsed sidebar state.
@@ -10,6 +14,7 @@ New optional properties:
 Fully backwards compatible - existing implementations continue working without changes.
 
 ## 0.1.0
+
 Improve scrolling
 
 ## 0.0.3
